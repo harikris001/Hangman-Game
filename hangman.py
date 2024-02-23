@@ -3,6 +3,9 @@ import pygame
 import random
 
 pygame.init()
+pygame.mixer.init()
+sound = pygame.mixer.Sound("stranger.mp3")  # Replace "sound.wav" with the path to your sound file
+
 winHeight = 480
 winWidth = 700
 win=pygame.display.set_mode((winWidth,winHeight))
@@ -155,6 +158,10 @@ def end(winner=False):
                 again = False
     reset()
 
+# Sound
+def play_sound():
+    sound.play()
+
 
 # game reset function
 def reset():
@@ -176,6 +183,7 @@ def splash_screen():
     splash_render = splash_font.render(splash_text, 1, BLACK)
     instructions_render = btn_font.render(instructions, 1, BLACK)
     
+    play_sound()
     win.fill(WHITE)
     win.blit(splash_render, (winWidth/2 - splash_render.get_width()/2, 100))
     win.blit(instructions_render, (winWidth/2 - instructions_render.get_width()/2, 300))
